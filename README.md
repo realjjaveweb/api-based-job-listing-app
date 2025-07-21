@@ -52,10 +52,14 @@ Rest of the folders are for configuration and app/console support.
    ```
 
 2. **Create `.env` file and specify following environment variables:**
-    - `APP_ENV=dev`
-    - `APP_SECRET=...`
-    - `RECRUITIS_API_TOKEN=...`
+    ```
+    APP_ENV=dev
+    APP_SECRET=...
+    RECRUITIS_API_TOKEN=...
+    CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
+    ```
     - (replace `...` with actual values)
+    - easy way to get APP_SECRET is to run `php -r "echo 'APP_SECRET=' . bin2hex(random_bytes(26));"` (based on "cryptographically secure random bytes")
 
 2. **Start the application**
    ```
