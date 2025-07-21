@@ -1,0 +1,10 @@
+# Ignore everything by default
+*
+
+# Except these (negate ignore)
+!components/
+!App.vue
+!*.js
+
+# But ignore nested files/folders except components
+!*/*/ 

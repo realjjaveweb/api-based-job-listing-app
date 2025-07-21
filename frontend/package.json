@@ -1,0 +1,29 @@
+{
+  "name": "recruitis-job-listings-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write 'components/**/*' 'App.vue' '*.js'"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "axios": "^1.6.0",
+    "prettier": "^3.6.2",
+    "vue": "^3.5.17",
+    "vue-router": "^4.2.0",
+    "vuetify": "^3.9.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.0",
+    "eslint": "^9.31.0",
+    "eslint-plugin-vue": "^10.3.0",
+    "prettier-plugin-vue": "^1.1.6",
+    "vite": "^7.0.5"
+  }
+}
