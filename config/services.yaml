@@ -1,0 +1,55 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # App - Routing/Controller
+    App\Controller\:
+        resource: '../src/Controller/'
+        exclude:
+            - '../src/Controller/Common/Trait/'
+
+    # App - Application - Job
+    App\Application\Job\Service\:
+        resource: '../src/Application/Job/Service/'
+
+    App\Application\Job\Repository\:
+        resource: '../src/Application/Job/Repository/'
+
+    # Infrastructure
+    App\Infrastructure\:
+        resource: '../src/Infrastructure/'
+
+    # HTTP Client
+    GuzzleHttp\Client:
+        arguments:
+            - timeout: 30
+
+    App\Infrastructure\Http\GuzzleHttpClient:
+        arguments:
+            $client: '@GuzzleHttp\Client'
+            $logger: '@logger'
+
+    App\Infrastructure\Http\HttpClientInterface:
+        alias: App\Infrastructure\Http\GuzzleHttpClient
+
+    # Cache
+    # - using an interface in the app allows future cache implementation swap with not much hassle
+    App\Infrastructure\Cache\CacheInterface:
+        alias: App\Infrastructure\Cache\SymfonyCacheAdapter
+
+
+    # Contract implementations
+    App\Application\Job\Repository\JobApplicationRepositoryInterface:
+        alias: App\Infrastructure\Recruitis\RecruitisJobApplicationRepository
+
+    App\Application\Job\Repository\JobRepositoryInterface:
+        alias: App\Infrastructure\Recruitis\RecruitisJobRepository
+
