@@ -4,7 +4,10 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     git \
     unzip \
-    && docker-php-ext-install pdo pdo_mysql mbstring
+    && docker-php-ext-install pdo pdo_mysql mbstring \
+    && pecl install redis \
+    && docker-php-ext-enable redis
+# redis note: Package 'php8.2-redis' has no installation candidate unless we'd manually add a repo
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

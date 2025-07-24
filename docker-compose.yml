@@ -34,6 +34,12 @@ services:
     depends_on:
       - nginx
 
+  redis:
+    image: redis:alpine
+    container_name: recruitis_redis
+    ports:
+      - "6379:6379"
+
 
 # In case DB would be needed
   # db:
